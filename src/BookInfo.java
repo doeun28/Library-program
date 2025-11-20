@@ -10,8 +10,9 @@ public class BookInfo {
     public boolean addBook(String author, String title, String bookId) {
         return saveBook(author, title, bookId);
     }
-    public boolean saveBook(String author, String title, String bookId) {
+    private boolean saveBook(String author, String title, String bookId) {
         Book book = new Book(author, title, bookId);
         return bookList.add(book);
     }
+
 }
