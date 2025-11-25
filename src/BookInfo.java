@@ -14,5 +14,8 @@ public class BookInfo {
         Book book = new Book(author, title, bookId);
         return bookList.add(book);
     }
+    public List<Book> getBookList() {
+        return new ArrayList<>(bookList);
+    }
 
 }

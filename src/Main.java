@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -14,7 +15,7 @@ public class Main {
             System.out.println("==================================");
             System.out.print("-> 메뉴를 선택하세요 : ");
             String menu = sc.nextLine();
-            if (menu.equals("0")) {
+            if (menu.equals("3")) {
                 System.out.println("-> 프로그램을 종료합니다.");
                 break;
             }
@@ -41,18 +42,20 @@ public class Main {
             }
 
             else if (menu.equals("2")) {
+                BookSearch search = new BookSearch(manager);
                 System.out.println("\n[ 도서 검색 ]");
                 System.out.println("---------------------------------------------");
                 System.out.print("검색어 입력 (제목/저자/청구기호) : ");
                 String keyword = sc.nextLine();
                 System.out.println("---------------------------------------------");
 
-                Book foundBook = manager.searchBook(keyword);
+                List<Book> foundBook = search.searchBook(keyword);
 
                 if (foundBook != null) {
-                    System.out.println("-> 검색 결과:");
-                    System.out.println("   " + foundBook.toString());
-                } else {
+                    System.out.print("-> 검색 결과:");
+                    System.out.println("   " + foundBook);
+                }
+                else {
                     System.out.println("-> 찾는 도서가 없습니다.");
                 }
             }
