@@ -24,12 +24,13 @@ public class BookInfo {
     private Book saveBook(String author, String title, String bookId) {
         return new Book(author, title, bookId);
     }
-
-    // 전체 책 출력 (검색이 없으므로 참고용)
-    public void printBooks() {
-        for (Book b : books) {
-            System.out.println(b);
-        }
+    private boolean saveBook(String author, String title, String bookId) {
+        Book book = new Book(author, title, bookId);
+        return bookList.add(book);
     }
+    public List<Book> getBookList() {
+        return new ArrayList<>(bookList);
+    }
+
 }
 
