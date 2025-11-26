@@ -5,6 +5,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         BookInfo manager = new BookInfo();
+        label:
         while (true) {
             System.out.println("\n==================================");
             System.out.println("[ 도서 관리 프로그램 v 1.0]");
@@ -15,50 +16,59 @@ public class Main {
             System.out.println("==================================");
             System.out.print("-> 메뉴를 선택하세요 : ");
             String menu = sc.nextLine();
-            if (menu.equals("3")) {
-                System.out.println("-> 프로그램을 종료합니다.");
-                break;
-            }
-            else if (menu.equals("1")) {
-                System.out.println("\n[ 신규 도서 추가 ]");
-                System.out.println("---------------------------------------------");
+            switch (menu) {
 
-                System.out.print("1. 저자 입력 : ");
-                String author = sc.nextLine();
+                case "1":
+                    System.out.println("\n[ 신규 도서 추가 ]");
+                    System.out.println("---------------------------------------------");
 
-                System.out.print("2. 제목 입력 : ");
-                String title = sc.nextLine();
+                    System.out.print("1. 저자 입력 : ");
+                    String author = sc.nextLine();
 
-                System.out.print("3. 청구기호 입력 : ");
-                String bookId = sc.nextLine();
-                System.out.println("---------------------------------------------");
+                    System.out.print("2. 제목 입력 : ");
+                    String title = sc.nextLine();
 
-                boolean result = manager.addBook(author, title, bookId);
+                    System.out.print("3. 청구기호 입력 : ");
+                    String bookId = sc.nextLine();
+                    System.out.println("---------------------------------------------");
 
-                if (result) {
-                    System.out.println("-> 도서가 정상적으로 등록되었습니다!");
-                    System.out.println("   (제목: " + title + ", 저자: " + author + ")");
-                }
-            }
+                    boolean result = manager.addBook(author, title, bookId);
 
-            else if (menu.equals("2")) {
-                BookSearch search = new BookSearch(manager);
-                System.out.println("\n[ 도서 검색 ]");
-                System.out.println("---------------------------------------------");
-                System.out.print("검색어 입력 (제목/저자/청구기호) : ");
-                String keyword = sc.nextLine();
-                System.out.println("---------------------------------------------");
+                    if (result) {
+                        System.out.println("-> 도서가 정상적으로 등록되었습니다!");
+                        System.out.println("   (제목: " + title + ", 저자: " + author + ")");
+                    }
+                    System.out.println("------------------Enter----------------------");
+                    sc.nextLine();
+                    break;
+                case "2":
+                    BookSearch search = new BookSearch(manager);
+                    System.out.println("\n[ 도서 검색 ]");
+                    System.out.println("---------------------------------------------");
+                    System.out.print("검색어 입력 (제목/저자/청구기호) : ");
+                    String keyword = sc.nextLine();
+                    System.out.println("---------------------------------------------");
 
-                List<Book> foundBook = search.searchBook(keyword);
+                    List<Book> foundBook = search.searchBook(keyword);
 
-                if (foundBook != null) {
-                    System.out.print("-> 검색 결과:");
-                    System.out.println("   " + foundBook);
-                }
-                else {
-                    System.out.println("-> 찾는 도서가 없습니다.");
-                }
+                    if (foundBook != null) {
+
+                        System.out.println("-> 검색 결과:");
+                        for (Book book : foundBook) {
+                            System.out.println("   " + book);
+                        }
+                    } else {
+                        System.out.println("-> 찾는 도서가 없습니다.");
+                    }
+                    System.out.println("------------------Enter----------------------");
+                    sc.nextLine();
+                    break;
+
+                case "3":
+                    System.out.println("-> 프로그램을 종료합니다.");
+                    break label;
             }
         }
+        sc.close();
     }
 }
