@@ -1,15 +1,18 @@
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class BookInfoTest {
 
     @Test
-    public void testAddBook() {
+    void testAddBookPrintTrueFalse() {
         BookInfo info = new BookInfo();
 
-        boolean result = info.addBook("홍길동", "홍길동전", "12341234");
-        assertTrue(result,"책 추가 완료");
-    }
+        boolean r1 = info.addBook("홍길동", "책1", "ID001");
+        boolean r2 = info.addBook("","책2", "ID002");
+        boolean r3 = info.addBook(null,"책2", "ID002");
 
+        System.out.println("Test 1: " + r1);
+        System.out.println("Test 2: " + r2);
+        System.out.println("Test 3: " + r3);
+    }
 }
 

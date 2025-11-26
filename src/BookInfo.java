@@ -6,6 +6,12 @@ public class BookInfo {
 
     // Client가 호출하는 메서드
     public boolean addBook(String author, String title, String bookId) {
+        if (author == null || author.isEmpty() ||
+                title == null || title.isEmpty() ||
+                bookId == null || bookId.isEmpty()) {
+            System.out.println("책 정보가 올바르지 않습니다. 다시 입력하새요.");
+            return false;
+        }
         Book newBook = saveBook(author, title, bookId);
         if (newBook != null) {
             books.add(newBook);
